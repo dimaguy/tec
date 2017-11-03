@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2016 Trillek contributors. See AUTHORS.txt for details
+﻿// Copyright (c) 2013-2016 Trillek contributors. See AUTHORS.txt for details
 // Licensed under the terms of the LGPLv3. See licenses/lgpl-3.0.txt
 
 #include "voxel-volume.hpp"
@@ -228,9 +228,9 @@ namespace tec {
 		return voxvol;
 	}
 
-	void VoxelVolume::On(const eid entity_id, std::shared_ptr<MouseClickEvent> data) {
+	void VoxelVolume::On(std::shared_ptr<MouseClickEvent> data) {
 		if (data->button == MouseBtnEvent::LEFT) {
-			if (entity_id == this->entity_id) {
+			if (data->entity_id == this->entity_id) {
 				const Position* pos = Entity(entity_id).Get<Position>();
 				const Orientation* orientation = Entity(entity_id).Get<Orientation>();
 				glm::mat4 model_view = glm::inverse(glm::translate(glm::mat4(1.0), pos->value) * glm::mat4_cast(orientation->value));
